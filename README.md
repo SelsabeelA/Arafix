@@ -2,6 +2,11 @@
 
 A Python package for preprocessing Arabic text and evaluating diacritization models.
 
+## Contributors:
+
+[Roaa Fathi Nada](https://github.com/rFathi03) 
+
+[Basma Mahmoud Hashem](https://github.com/Basma2423/) 
 ## Installation
 
 ### Local Installation
