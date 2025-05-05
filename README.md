@@ -27,7 +27,7 @@ sys.path.append('/kaggle/working/ara_fix')
 ```
 4. Import the package:
 ```python
-from ara_fix import preprocess, postprocess, der
+from ara_fix import AraFix
 ```
 
 ### Google Colab
@@ -43,59 +43,30 @@ sys.path.append('/content/ara_fix')
 ```
 4. Import the package:
 ```python
-from ara_fix import preprocess, postprocess, der
+from ara_fix import AraFix
 ```
 
 ## Usage
 
 ### Preprocessing
 ```python
-from ara_fix import preprocess
+from ara_fix import AraFix
 
-text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-processed = preprocess(text)
-print(processed)  # Output: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+corrector = AraFix()
+
+text = "فِي يَوْمِنَا هَذَا وَاصَرَ الشَّعْبُ الْيَابَانِيُّ إِلٌى يَوْمِنَا هَذَا عَلَى تَقِّلِيدِ الْهَانَامِي، الْآلٍّافُ مِنَ الْأَشْخَاصِ تَمْلَأُ علْحَدَائِقَ لِعَغْدِ حَفْرِ الْهَانَامِي"
+corrected_text = corrector.correct(text)
+print(f"Corrected Text: {corrected_text}")
+# Output: "فِي يَوْمِنَا هَذَا وَاصَلَ الشَّعْبُ الْيَابَانِيُّ إِلَى يَوْمِنَا هَذَا عَلَى تَقْلِيدِ الْهَانَامِي الْآلَافُ مِنَ الْأَشْخَاصِ تَمْلَأُ الْحَدَائِقَ لِعَقْدِ حَفْرِ الْهَانَامِي"
 ```
 
-### Postprocessing
-```python
-from ara_fix import postprocess
 
-model_output = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-original_input = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-postprocessed = postprocess(model_output, original_input)
-print(postprocessed)  # Output: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-```
+## AraFix Methods
 
-### Diacritic Error Rate (DER)
-```python
-from ara_fix import der
+### `correct(text)`
+- text: **str** or a **list** of str
+- corrects phonetic and diacritic mistakes
 
-reference = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-prediction = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-
-der_score = der(reference, prediction)
-print(f"DER score: {der_score}%")  # Output: "DER score: 0.0%"
-```
-
-## Functions
-
-### `preprocess(text, remove_last_diacritic=True)`
-- Removes tatweel (ـ) characters
-- Removes extra spaces
-- Strips invalid characters
-- Normalizes text to NFC
-- Optionally removes last diacritic
-
-### `postprocess(model_output, original_input)`
-- Aligns model output with original input
-- Preserves correct diacritic placement
-- Handles letter and diacritic combinations
-
-### `der(reference, prediction)`
-- Calculates Diacritic Error Rate
-- Compares reference and prediction diacritics
-- Returns error rate as percentage
 
 ## Dependencies
 - transformers
