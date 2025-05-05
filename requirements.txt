@@ -1,0 +1,7 @@
+pyarabic
+jiwer
+diacritization_evaluation
+transformers
+datasets
+torch
+tqdm
