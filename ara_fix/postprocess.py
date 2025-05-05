@@ -1,5 +1,5 @@
 import re
-from .config import DIACRITICS, DIACRITICS_PATTERN, LETTERS, LETTERS_PATTERN
+from .config import DIACRITICS, DIACRITICS_PATTERN, LETTERS_PATTERN
 
 def is_diacritic(c):
     return re.match(DIACRITICS_PATTERN, c)
@@ -12,8 +12,7 @@ def remove_last_diacritic(text):
     text = text[:-1]
   return text
 
-def postprocessing(model_output, original_input):
-    # print("entered remove")
+def postprocess(model_output, original_input):
 
     result = []
     i, j = 0, 0

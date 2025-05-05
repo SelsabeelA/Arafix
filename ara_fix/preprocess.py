@@ -1,7 +1,7 @@
 import re
 import unicodedata
 import pyarabic.araby as araby
-from .config import DIACRITICS, DIACRITICS_PATTERN, LETTERS, LETTERS_PATTERN
+from .config import DIACRITICS, LETTERS
 
 def preprocess(text, remove_last_diacritic=True):
 

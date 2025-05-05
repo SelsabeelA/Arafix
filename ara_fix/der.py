@@ -1,31 +1,6 @@
-from .config import DIACRITICS
-from diacritization_evaluation.der import calculate_der
-
-def extract_diacritics(text):
-    return ''.join([c for c in text if c in DIACRITICS])
-
-def der(reference, prediction):
-    """
-    DER (Diacritic Error Rate) = Levenshtein distance between reference and hypothesis diacritics / number of reference diacritics
-    """
-    ref_diacritics = extract_diacritics(reference)
-    pred_diacritics = extract_diacritics(prediction)
-
-    total = max(len(ref_diacritics), 1)  # avoid division by zero
-    correct = sum(r == p for r, p in zip(ref_diacritics, pred_diacritics))
-
-    print(f"total: {total}")
-    print(f"correct: {correct}")
-
-    errors = total - correct
-
-    print(f"errors: {errors}")
-
-    return round(errors / total * 100, 2)
+from .config import DIACRITICS, ARAB_CHARS, ARAB_CHARS_NO_SPACE
 
 def der(original_content, predicted_content, case_ending=True):
-    ARAB_CHARS = "ىعظحرسيشضق ثلصطكآماإهزءأفؤغجئدةخوبذتن"
-    ARAB_CHARS_NO_SPACE = "ىعظحرسيشضقثلصطكآماإهزءأفؤغجئدةخوبذتن"
 
     SKIP_CASE_ENDING_VALUE = -1
 

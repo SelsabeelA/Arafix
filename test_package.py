@@ -1,4 +1,4 @@
-from ara_fix import preprocess, postprocessing, der, calculate_der
+from ara_fix import preprocess, postprocess, der
 
 # Test preprocessing
 text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
@@ -11,7 +11,7 @@ print(f"Processed: {processed}")
 model_output = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
 original_input = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
 print("\nTesting postprocessing:")
-postprocessed = postprocessing(model_output, original_input)
+postprocessed = postprocess(model_output, original_input)
 print(f"Model output: {model_output}")
 print(f"Original input: {original_input}")
 print(f"Postprocessed: {postprocessed}")

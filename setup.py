@@ -11,7 +11,6 @@ setup(
         "datasets",
         "pyarabic",
         "jiwer",
-        "diacritization_evaluation",
         "torch",
         "tqdm"
     ],
