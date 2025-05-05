@@ -1,0 +1,25 @@
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from .config import MODEL_NAME
+
+class AraFixModel:
+    def __init__(self):
+        self._model = None
+        self._tokenizer = None
+        
+    @property
+    def model(self):
+        if self._model is None:
+            self._model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
+        return self._model
+    
+    @property
+    def tokenizer(self):
+        if self._tokenizer is None:
+            self._tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+        return self._tokenizer
+    
+    def predict(self, text):
+        inputs = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True)
+        outputs = self.model.generate(**inputs, max_length=128)
+        decoded_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
+        return decoded_output

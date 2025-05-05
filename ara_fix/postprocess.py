@@ -22,7 +22,7 @@ def postprocess(model_output, original_input):
         in_char = original_input[j]
         # print(f"i {i} j {j}")
         # print(f"out {out_char} and {in_char}")
-
+        
 
         # Cases we increase both indecies
         CASE_1 = out_char == in_char
@@ -33,7 +33,7 @@ def postprocess(model_output, original_input):
         # Cases we increase input index
         CASE_5 = is_letter(out_char) and is_diacritic(in_char)
         CASE_6 = out_char == ' ' and is_diacritic(in_char)
-        CASE_7 = is_letter(out_char) and in_char == ' '
+        CASE_7 = is_letter(out_char) and in_char == ' ' 
 
         # Cases we increase output index
         CASE_8 = out_char == ' ' and is_letter(in_char)
@@ -68,5 +68,5 @@ def postprocess(model_output, original_input):
         if model_output[i] != ' ':
             result.append(model_output[i])
         i += 1
-
+    
     return remove_last_diacritic(''.join(result))

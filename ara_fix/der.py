@@ -1,10 +1,10 @@
-from .config import DIACRITICS, ARAB_CHARS, ARAB_CHARS_NO_SPACE
+from .config import DIACRITICS, ARAB_CHARS_NO_SPACE
 
 def der(original_content, predicted_content, case_ending=True):
 
     SKIP_CASE_ENDING_VALUE = -1
 
-        ####################################################################
+    ################ HELPING FUNCTIONS #############################
 
     def extract_stack(stack, correct_reversed=True):
         if not stack:
@@ -24,7 +24,7 @@ def der(original_content, predicted_content, case_ending=True):
         else:
             return ""
 
-        ####################################################################
+        ####################################
 
     def extract_haraqat(text, correct_reversed=True):
         if len(text.strip()) == 0:
@@ -49,7 +49,7 @@ def der(original_content, predicted_content, case_ending=True):
 
         return text, txt_list, haraqat_list
 
-        ####################################################################
+        ####################################
 
     def get_case_ending_indices_from_un_diacritized_txt(text):
         text = text + [" "]
@@ -59,7 +59,7 @@ def der(original_content, predicted_content, case_ending=True):
                 indices.append(i - 1)
         return indices
 
-        ####################################################################
+    ####################################################################
 
     _, original_text, original_haraqat = extract_haraqat(original_content)
     _, predicted_text, predicted_haraqat = extract_haraqat(predicted_content)
