@@ -67,6 +67,10 @@ print(f"Corrected Text: {corrected_text}")
 - text: **str** or a **list** of str
 - corrects phonetic and diacritic mistakes
 
+### `evaluate(reference, text)`
+- reference: **str** or a **list** of str
+- text: **str** or a **list** of str
+- computes character, word, and diacritic error rates (CER, WER, and DER)
 
 ## Dependencies
 - transformers
