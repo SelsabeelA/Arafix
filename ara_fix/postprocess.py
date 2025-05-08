@@ -8,9 +8,16 @@ def is_letter(c):
     return re.match(LETTERS_PATTERN, c)
 
 def remove_last_diacritic(text):
-  while text and text[-1] in DIACRITICS:
-    text = text[:-1]
-  return text
+    if not text:  
+        return text
+        
+    # trailing whitespace
+    text = text.rstrip()
+    
+    while text and text[-1] in DIACRITICS:
+        text = text[:-1]
+    
+    return text
 
 def postprocess(model_output, original_input):
 
