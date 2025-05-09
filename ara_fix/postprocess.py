@@ -11,13 +11,20 @@ def remove_last_diacritic(text):
     if not text:  
         return text
         
-    # trailing whitespace
     text = text.rstrip()
     
     while text and text[-1] in DIACRITICS:
         text = text[:-1]
     
     return text
+
+def reverse_shadda(text):
+    SHADDA = 'ّ'
+    text_list = list(text)
+    for i, ch in enumerate(text_list[1:]):
+        if text_list[i] == SHADDA and text_list[i-1] in DIACRITICS:
+            text_list[i], text_list[i-1] = text_list[i-1], text_list[i]
+    return ''.join(text_list)
 
 def postprocess(model_output, original_input):
 
@@ -27,10 +34,7 @@ def postprocess(model_output, original_input):
     while i < len(model_output) and j < len(original_input):
         out_char = model_output[i]
         in_char = original_input[j]
-        # print(f"i {i} j {j}")
-        # print(f"out {out_char} and {in_char}")
-        
-
+       
         # Cases we increase both indecies
         CASE_1 = out_char == in_char
         CASE_2 = is_diacritic(out_char) and is_diacritic(in_char)
@@ -48,32 +52,28 @@ def postprocess(model_output, original_input):
         CASE_10 = is_diacritic(out_char) and is_letter(in_char)
 
         if CASE_1 or CASE_2 or CASE_3 or CASE_4:
-            # print("Cases 1-4")
             result.append(out_char)
             i += 1
             j += 1
         elif CASE_5 or CASE_6:
-            # print("Cases 5-6")
-            # result.append(out_char)
             j += 1
         elif CASE_7:
-            # print("Case 7: Letter out Space in")
             result.append(out_char)
             j += 1
         elif CASE_8 or CASE_9 or CASE_10:
-            # print("Cases 8-10")
-            # result.append(in_char)
             i += 1
         else:
-            # print("Not in the 10 cases")
             result.append(out_char)
             i += 1
             j += 1
-        # print("+"*10)
 
     while i < len(model_output):
         if model_output[i] != ' ':
             result.append(model_output[i])
         i += 1
+
+    result = remove_last_diacritic(''.join(result))
+
+    result = reverse_shadda(result)
     
-    return remove_last_diacritic(''.join(result))
+    return result
