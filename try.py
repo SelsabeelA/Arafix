@@ -41,6 +41,6 @@ for i, text in enumerate(corrected_texts):
     print("=" * 50, "\n")
 
 metrics = corrector.evaluate(references, corrected_texts)
-print(f"Cer : {metrics['cer']}")
-print(f"Wer : {metrics['wer']}")
-print(f"Der : {metrics['der']}")
+print(f"Cer : {metrics['cer']:.4f}")
+print(f"Wer : {metrics['wer']:.4f}")
+print(f"Der : {metrics['der']:.4f}")

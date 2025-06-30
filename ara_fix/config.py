@@ -29,5 +29,5 @@ LETTERS_PATTERN = r'[\u0621-\u064A]'
 
 ARAB_CHARS_NO_SPACE = "".join(LETTERS)
 
-MODEL_NAME = "CUAIStudents/AraFix"
+MODEL_NAME = "CUAIStudents/AraFix-V1.0"
 
