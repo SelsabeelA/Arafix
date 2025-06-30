@@ -1,7 +1,7 @@
 # AraFix - Arabic Text Correction (Pro and Post Processing and Diacritization Evaluation)
 
 Arabic correction model that fixes both diacritic and phoentic errors
-This repo is a wrapper for AraFix-V1.0 model on (huggingface)[https://huggingface.co/CUAIStudents/AraFix-V1.0]
+This repo is a wrapper for AraFix-V1.0 model on [huggingface](https://huggingface.co/CUAIStudents/AraFix-V1.0)
 
 ## Contributors:
 
